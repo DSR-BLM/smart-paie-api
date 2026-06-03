@@ -1,0 +1,26 @@
+module.exports = (sequelize, DataTypes) => {
+  return sequelize.define("Bulletin", {
+    id:                    { type: DataTypes.UUID, defaultValue: DataTypes.UUIDV4, primaryKey: true },
+    id_entreprise:         { type: DataTypes.UUID, allowNull: false },
+    id_employe:            { type: DataTypes.UUID, allowNull: false },
+    id_periode:            { type: DataTypes.UUID, allowNull: false },
+    statut:                { type: DataTypes.ENUM("BROUILLON","VALIDE","CLOTURE"), defaultValue: "BROUILLON" },
+    heures_supp_25:        { type: DataTypes.DECIMAL(6,2), defaultValue: 0 },
+    heures_supp_50:        { type: DataTypes.DECIMAL(6,2), defaultValue: 0 },
+    jours_absence:         { type: DataTypes.DECIMAL(6,2), defaultValue: 0 },
+    acompte:               { type: DataTypes.DECIMAL(15,4), defaultValue: 0 },
+    salaire_brut:          { type: DataTypes.DECIMAL(15,4) },
+    assiette_cnss:         { type: DataTypes.DECIMAL(15,4) },
+    montant_cnss_salarial: { type: DataTypes.DECIMAL(15,4) },
+    montant_cnss_patronal: { type: DataTypes.DECIMAL(15,4) },
+    salaire_net_fiscal:    { type: DataTypes.DECIMAL(15,4) },
+    abattement_iuts_total: { type: DataTypes.DECIMAL(15,4) },
+    base_imposable_iuts:   { type: DataTypes.DECIMAL(15,4) },
+    montant_iuts:          { type: DataTypes.DECIMAL(15,4) },
+    salaire_net_intermediaire: { type: DataTypes.DECIMAL(15,4) },
+    fsp_actif:             { type: DataTypes.BOOLEAN, defaultValue: false },
+    fsp_taux_applique:     { type: DataTypes.DECIMAL(5,4), defaultValue: 0 },
+    montant_fsp:           { type: DataTypes.DECIMAL(15,4), defaultValue: 0 },
+    salaire_net_a_payer:   { type: DataTypes.DECIMAL(15,4) },
+  }, { tableName: "bulletins", underscored: true, timestamps: true });
+};

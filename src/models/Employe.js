@@ -1,0 +1,25 @@
+module.exports = (sequelize, DataTypes) => {
+  return sequelize.define("Employe", {
+    id:               { type: DataTypes.UUID, defaultValue: DataTypes.UUIDV4, primaryKey: true },
+    id_entreprise:    { type: DataTypes.UUID, allowNull: false },
+    id_utilisateur:   { type: DataTypes.UUID },
+    matricule:        { type: DataTypes.STRING(50), allowNull: false },
+    nom:              { type: DataTypes.STRING(100), allowNull: false },
+    prenom:           { type: DataTypes.STRING(100), allowNull: false },
+    date_naissance:   { type: DataTypes.DATEONLY },
+    sexe:             { type: DataTypes.ENUM("M","F") },
+    nationalite:      { type: DataTypes.STRING(80), defaultValue: "Burkinabè" },
+    situation_familiale: { type: DataTypes.ENUM("CELIBATAIRE","MARIE","DIVORCE","VEUF"), defaultValue: "CELIBATAIRE" },
+    nb_enfants_charge:{ type: DataTypes.SMALLINT, defaultValue: 0 },
+    conjoint_a_charge:{ type: DataTypes.BOOLEAN, defaultValue: false },
+    poste:            { type: DataTypes.STRING(150), allowNull: false },
+    categorie:        { type: DataTypes.STRING(50) },
+    date_embauche:    { type: DataTypes.DATEONLY, allowNull: false },
+    type_contrat:     { type: DataTypes.ENUM("CDI","CDD","STAGE","CONSULTANT"), defaultValue: "CDI" },
+    salaire_base:     { type: DataTypes.DECIMAL(15,4), allowNull: false },
+    numero_cnss:      { type: DataTypes.STRING(50) },
+    numero_ifu:       { type: DataTypes.STRING(50) },
+    banque:           { type: DataTypes.STRING(100) },
+    numero_compte_bancaire: { type: DataTypes.STRING(50) },
+  }, { tableName: "employes", underscored: true, timestamps: true, paranoid: true });
+};
